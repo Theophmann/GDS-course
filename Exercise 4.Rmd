@@ -7,16 +7,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Exploring the count tables
-
-Here, import an example count table and do some exploration of the expression data. 
-
-```{r exSetup1, eval=FALSE}
-counts_file <- system.file("extdata/rna-seq/SRP029880.raw_counts.tsv",
-                           package = "compGenomRData")
-coldata_file <- system.file("extdata/rna-seq/SRP029880.colData.tsv", 
-                            package = "compGenomRData")
-```
 
 1. Normalize the counts using the TPM approach. 
 ```{r}
@@ -34,7 +24,7 @@ rpk <- apply( subset(counts, select = c(-width)), 2,
               function(x) x/(geneLengths/1000))
 tpm <- apply(rpk, 2, function(x) x / sum(as.numeric(x)) * 10^6)
 
-#2
+
 
 V <- apply(tpm, 1, var)
 selectedGenes<- names(V[order(V, decreasing = T)][1:500])
@@ -58,11 +48,5 @@ corrplot(correlationMatrix, order = 'hclust',
          number.cex = 0.7)
 ```
 
-### Git and Github
-
-5. Open Github account, and install git if it required as instructed in the following link: https://github.com/llendway/github_for_collaboration/blob/master/github_for_collaboration.md
-
-6. Create a repository and commit and push the answers of this exercise through Rtudio (Please upload the answers to the exercises also to Moodle).
-
-7. Insert the link to your Github account here.
+ Insert the link to your Github account here.
 https://github.com/Theophmann/Theo_test_repo.git
